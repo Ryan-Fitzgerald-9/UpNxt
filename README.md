@@ -1,5 +1,11 @@
 # UpNxt
-With seemingly endless options for streaming, finding the next movie or show to watch can take almost as long as a feauture film. UpNxt provides movies/shows availability across all your favorite streaming apps to save you time from swapping between each over and over. Users can provide their own scroes and reviews for shows that they've seen as well.
+With seemingly endless options for streaming, finding the next movie or show to watch can take almost as long as a feature film. UpNxt provides movies/shows availability across all your favorite streaming apps to save you time from swapping between each over and over. Users can provide their own scroes and reviews as well.
+
+### Created By
+**Ryan Fitzgerald**
+[LinkedIn](https://linkedin.com/in/ryan-fitzgerald-rf09)
+[GitHub](https://github.com/Ryan-Fitzgerald-9)
+
 
 ## Project Planning
 [Working Trello Board](https://trello.com/invite/b/8c0CidtM/ATTI56b7880d05c4ce2ab846d0647d0c0a814860D981/upnxt)
