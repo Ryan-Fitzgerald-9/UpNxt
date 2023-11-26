@@ -12,7 +12,7 @@ With seemingly endless options for streaming, finding the next movie or show to 
 
 <img src=ReadMeAssets/Wireframe.png alt='Wireframe' width=65%>
 
-### Component Relationship Diagram
+### Component Hierarchy Diagram
 
 <img src='ReadMeAssets/CHD.png' alt='Component hierarchy diagram' width=100%>
 
@@ -40,5 +40,5 @@ With seemingly endless options for streaming, finding the next movie or show to 
 
 **Ryan Fitzgerald**  
 Email: rfitzgerald806@gmail.com  
-[LinkedIn](https://linkedin.com/in/ryan-fitzgerald-rf09)
+[LinkedIn](https://linkedin.com/in/ryan-fitzgerald-rf09) |
 [GitHub](https://github.com/Ryan-Fitzgerald-9)
