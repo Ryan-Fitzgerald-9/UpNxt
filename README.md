@@ -1,5 +1,5 @@
 # UpNxt
-With seemingly endless options for streaming, finding the next movie or show to watch can take almost as long as a feauture film. UpNxt provides movies/shows availability across all your favorite streaming apps to save you time from swapping between each over and over.
+With seemingly endless options for streaming, finding the next movie or show to watch can take almost as long as a feauture film. UpNxt provides movies/shows availability across all your favorite streaming apps to save you time from swapping between each over and over. Users can provide their own scroes and reviews for shows that they've seen as well.
 
 ## Project Planning
 [Working Trello Board](https://trello.com/invite/b/8c0CidtM/ATTI56b7880d05c4ce2ab846d0647d0c0a814860D981/upnxt)
@@ -10,7 +10,7 @@ With seemingly endless options for streaming, finding the next movie or show to 
 
 ### Home Page Wireframe
 
-<img src=ReadMeAssets/Wireframe.png alt='Wireframe' width=100%>
+<img src=ReadMeAssets/Wireframe.png alt='Wireframe' width=65%>
 
 ### Component Relationship Diagram
 
@@ -32,4 +32,5 @@ With seemingly endless options for streaming, finding the next movie or show to 
 - Use third party API
 - Implement Oauth with Auth0 for users
 - Deploy with Railway, Heroku, or Netlify
-- Use of stylish animations, transitions, app logo
+- User Wishlist and Favorites
+- Create animations, transitions, app logo
