@@ -27,7 +27,7 @@ With seemingly endless options for streaming, finding the next movie or show to 
 - HTML
 - Axios
 
-### Stretch Goals
+### Post-MVP Ideas
 - Movie/Series recommendation function
 - Use third party API
 - Implement Oauth with Auth0 for users
