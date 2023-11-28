@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'upnxt'
 ]
 
+AUTH_USER_MODEL = 'upnxt.CustomUser'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
