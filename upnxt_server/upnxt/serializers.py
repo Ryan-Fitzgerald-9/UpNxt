@@ -3,7 +3,7 @@ from .models import Review, Movie, Show, CustomUser
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     movie = serializers.HyperlinkedRelatedField(
-        view_name='movie-detail',
+        view_name='movie_detail',
         read_only=True
     )
 
@@ -13,7 +13,7 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     show = serializers.HyperlinkedRelatedField(
-        view_name='show-detail',
+        view_name='show_detail',
         read_only=True
     )
 
@@ -23,7 +23,7 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     user = serializers.HyperlinkedRelatedField(
-        view_name='customuser-detail',
+        view_name='customuser_detail',
         read_only=True
     )
 
@@ -43,7 +43,7 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     movie_url = serializers.ModelSerializer.serializer_url_field(
-        view_name='movie-detail'
+        view_name='movie_detail'
     )
 
     class Meta:
@@ -57,7 +57,7 @@ class ShowSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     show_url = serializers.HyperlinkedIdentityField(
-        view_name='show-detail',
+        view_name='show_detail',
     )
 
     class Meta:
