@@ -1,6 +1,3 @@
-import React, { createContext } from 'react';
+import { createContext } from "react";
 
-// context with an initial value
-const DetailsContext = createContext({});
-
-export default DetailsContext
+export const DetailsContext = createContext({})

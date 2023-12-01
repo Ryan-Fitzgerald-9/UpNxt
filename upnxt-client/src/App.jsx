@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { DetailsContext } from './DataContext'
 import './App.css'
-import Main from './components/Main'
+import { DetailsContext } from "./DataContext"
+import { useState } from 'react'
+// import Main from './components/Main'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -17,7 +17,7 @@ function App() {
     >
       <div className="app">
         <Header />
-        <Main />
+        {/* <Main /> */}
         <Footer />
       </div>
     </DetailsContext.Provider>
