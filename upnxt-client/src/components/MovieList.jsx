@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import { BASE_URL } from '../globals'
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
+import { Card, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
+import MoviePage from "./MoviePage"
 
 export default function MovieList() {
 
