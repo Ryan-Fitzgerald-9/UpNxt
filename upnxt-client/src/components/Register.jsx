@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
+// import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -12,10 +12,11 @@ const Register = () => {
     })
 
     const handleChange = (e) => {
+        console.log('handleChange called')
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         
         try {
@@ -29,51 +30,29 @@ const Register = () => {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <FormGroup>
-                <Label
-                for="upnxtUsername"
-                hidden
-                >
-                Username
-                </Label>
-                <Input id="upnxtUsername" placeholder="Enter username" type="text" value={formData.username} onChange={handleChange} />
-            </FormGroup>
-            {' '}
-            <FormGroup>
-                <Label
-                for="upnxtEmail"
-                hidden
-                >
-                Email
-                </Label>
-                <Input id="upnxtEmail" placeholder="Enter your email" type="text" value={formData.email} onChange={handleChange} />
-            </FormGroup>
-            {' '}
-            <FormGroup>
-                <Label
-                for="upnxtPassword1"
-                hidden
-                >
-                Password
-                </Label>
-                <Input id="upnxtPassword1" placeholder="Enter password" type="password" value={formData.password1} onChange={handleChange} />
-            </FormGroup>
-            {' '}
-            <FormGroup>
-                <Label
-                for="upnxtPassword2"
-                hidden
-                >
-                Confirm Password
-                </Label>
-                <Input id="upnxtPassword2" placeholder="Confirm password" type="password" value={formData.password2} onChange={handleChange} />
-            </FormGroup>
-            {' '}
-            <Button type='submit'>
-                Create Account
-            </Button>
-        </Form>
+        <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input type="text" name="username" value={formData.username} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input type="password" name="password1" value={formData.password1} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Confirm Password:
+        <input type="password" name="password2" value={formData.password2} onChange={handleChange} />
+      </label>
+      <br />
+      <button type="submit">Register</button>
+    </form>
     )
 }
 

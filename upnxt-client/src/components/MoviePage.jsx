@@ -1,4 +1,7 @@
 import React from "react";
+import { POSTER_PATH } from '../globals'
+import './Overlay.css'
+
 
 export default function MoviePage({ movie, onClose }) {
     return (
@@ -8,7 +11,7 @@ export default function MoviePage({ movie, onClose }) {
                     Close X
                 </button>
                 <div className="details-container">
-                    <img src={movie.img} alt={movie.title} />
+                    <img src={`${POSTER_PATH}${movie.tmdbPosterPath}`} alt={movie.title} />
                     <h3>{movie.title}</h3>
                     <p>{movie.genre} | {movie.length_in_mins} mins | {movie.release_date}</p>
                     <p>Director: {movie.director}</p>
