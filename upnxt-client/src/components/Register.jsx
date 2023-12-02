@@ -76,3 +76,5 @@ const Register = () => {
         </Form>
     )
 }
+
+export default Register
