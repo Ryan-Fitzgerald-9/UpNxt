@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'upnxt',
     'rest_framework',
+    'django.contrib.sites',
+    'dj_rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'dj_rest_auth.registration',  
+    'rest_framework.authtoken',
     'corsheaders'
 ]
 
@@ -47,7 +53,10 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'dj_rest_auth.authentication.AllAuthJWTAuthentication'
+    # )
 }
 
 AUTH_USER_MODEL = 'upnxt.CustomUser'
@@ -56,6 +65,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -76,6 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'django.template.context_processors.request' #from youtube clip
             ],
         },
     },
@@ -151,3 +162,27 @@ CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173'
 ]
+
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend', #from youtube clip
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
+
+# # Configure AllAuth
+# SITE_ID = 1
+# # For development only
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # Disables email verification
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
+# # Users register with email
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# # Email is required during registration
+# ACCOUNT_EMAIL_REQUIRED = True
+# # Email addresses must be unique
+# ACCOUNT_UNIQUE_EMAIL = True
+# # Users create a new username during registration
+# ACCOUNT_USERNAME_REQUIRED = True
+
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+# # Log the user out immediately when requested
+# ACCOUNT_LOGOUT_ON_GET = True

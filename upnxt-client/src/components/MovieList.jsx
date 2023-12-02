@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import { BASE_URL } from '../globals'
+import { BASE_URL, POSTER_PATH } from '../globals'
 import { Card, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
 import MoviePage from "./MoviePage"
 
@@ -34,7 +34,7 @@ export default function MovieList() {
                 <div className="card-list">
                     {movies.map((movie, key) => (
                         <Card className="card" key={movie._id} style={{width: '18rem'}}>
-                            <img alt={movie.title} src={movie.img}/>
+                            <img src={`${POSTER_PATH}${movie.backdrop_path}`} alt={movie.title}/>
                             <CardBody className="overlay">
                                 <CardTitle tag="h5">{movie.title}</CardTitle>
                                 <CardSubtitle className="mb-2 text-muted" tag="h6">

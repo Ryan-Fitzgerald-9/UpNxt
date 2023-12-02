@@ -8,7 +8,7 @@ export default function Main() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path='/SearchResults' element={< SearchResults />} /> */}
-          {/* <Route path="/RestaurantList" element={<RestaurantList />} /> */}
+          {/* <Route path="/MovieList" element={<MovieList />} /> */}
 
         </Routes>
       </div>
