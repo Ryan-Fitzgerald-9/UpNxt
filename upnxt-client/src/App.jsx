@@ -7,6 +7,15 @@ import Footer from './components/Footer'
 
 function App() {
   const [details, setDetails] = useState({})
+  const [user, setUser] = useState(null)
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData)
+  }
+
+  const handleLogoutSuccess = (userData) => {
+    setUser(null)
+  }
 
   return (
     <DetailsContext.Provider
@@ -16,8 +25,15 @@ function App() {
       }}
     >
       <div className="app">
-        <Header />
-        <Main />
+        <Header
+          isAuthenticated={user !== null}
+          username={user ? user.username : ''}
+          handleLogout={handleLogoutSuccess}
+        />
+        <Main
+          isAuthenticated={user !== null}
+          handleLoginSuccess={handleLoginSuccess}
+        />
         <Footer />
       </div>
     </DetailsContext.Provider>
