@@ -1,11 +1,15 @@
 import React from "react";
 import Nav from './Nav'
 
-const Header = () => {
+const Header = ({ isAuthenticated, username, handleLogout }) => {
     return (
         <header>
             <h1>UpNxt</h1>
-            <Nav />
+            <Nav
+                isAuthenticated={isAuthenticated}
+                username={username}
+                handleLogout={handleLogout}
+            />
         </header>
     )
 }

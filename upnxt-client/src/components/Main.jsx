@@ -5,14 +5,14 @@ import Logout from './Logout'
 import Register from './Register'
 // import MovieList from './MovieList'
 
-export default function Main() {
+export default function Main({ isAuthenticated, handleLoginSuccess}) {
     return (
       <div className="routesContainer">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/Login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
           <Route path="/Logout" element={<Logout />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/Register" element={<Register handleLoginSuccess={handleLoginSuccess} />} />
           {/* <Route path='/SearchResults' element={< SearchResults />} /> */}
           {/* <Route path="/MovieList" element={<MovieList />} /> */}
 
