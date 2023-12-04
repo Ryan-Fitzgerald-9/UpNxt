@@ -9,7 +9,8 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post(`${BASE_URL}/rest-auth/login/`, {
+            console.log(username, password)
+            const response = await axios.post(`${BASE_URL}/dj-rest-auth/login/`, {
                 username,
                 password
             })

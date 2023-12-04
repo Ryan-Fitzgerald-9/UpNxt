@@ -5,7 +5,7 @@ import { BASE_URL } from '../globals'
 const Logout = () => {
     const handleLogout = async () => {
         try {
-            const response = await axios.post(`${BASE_URL}/rest-auth/logout/`)
+            const response = await axios.post(`${BASE_URL}/dj-rest-auth/logout/`)
             // handle successful logout
             console.log(response.data)
         } catch (error) {

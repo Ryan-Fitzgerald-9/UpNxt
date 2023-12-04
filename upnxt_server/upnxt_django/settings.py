@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.sites',
     'dj_rest_auth',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'dj_rest_auth.registration',  
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',  
     'rest_framework.authtoken',
     'corsheaders'
 ]
@@ -54,9 +54,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'dj_rest_auth.authentication.AllAuthJWTAuthentication'
-    # )
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 AUTH_USER_MODEL = 'upnxt.CustomUser'
@@ -65,12 +65,13 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'upnxt.middleware.LogPostDataMiddleware',
 ]
 
 ROOT_URLCONF = 'upnxt_django.urls'
@@ -168,12 +169,16 @@ CSRF_TRUSTED_ORIGINS = [
 #     'allauth.account.auth_backends.AuthenticationBackend',
 # ]
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'path.to.your.CustomRegisterSerializer',
+}
+
 # # Configure AllAuth
-# SITE_ID = 1
+SITE_ID = 1
 # # For development only
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # # Disables email verification
-# ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 # # Users register with email
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # # Email is required during registration

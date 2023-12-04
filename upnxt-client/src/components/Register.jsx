@@ -20,7 +20,7 @@ const Register = () => {
         e.preventDefault()
         
         try {
-            const response = await axios.post(`${BASE_URL}/rest-auth/registration/`, formData)
+            const response = await axios.post(`${BASE_URL}/dj-rest-auth/registration/`, formData)
             // handle successful registration
             console.log(response.data)
         } catch (error) {
