@@ -3,17 +3,6 @@ from .models import Review, Movie, Show, CustomUser
 from dj_rest_auth.registration.serializers import RegisterSerializer
 
 
-class CustomRegisterSerializer(RegisterSerializer):
-    user_id = serializers.SerializerMethodField()
-
-    def get_user_id(self, obj):
-        return obj.id
-
-    def get_cleaned_data(self):
-        data = super().get_cleaned_data()
-        data['user_id'] = self.get_user_id(self.user)
-        return data
-
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     movie = serializers.HyperlinkedRelatedField(
         view_name='movie_detail',
@@ -86,3 +75,14 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('id', 'username', 'email', 'reviews')
+
+class CustomRegisterSerializer(RegisterSerializer):
+    user_id = serializers.SerializerMethodField()
+
+    def get_user_id(self, obj):
+        return obj.id
+
+    def get_cleaned_data(self):
+        data = super().get_cleaned_data()
+        data['user_id'] = self.get_user_id(self.user)
+        return data
