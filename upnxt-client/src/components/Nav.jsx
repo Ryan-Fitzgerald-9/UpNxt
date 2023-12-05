@@ -8,13 +8,13 @@ const Nav = ({ isAuthenticated, username, handleLogout }) => {
             <Link to="/" className='text-white text-4xl font-bold cursor-pointer'>UpNxt</Link>
             {isAuthenticated ? (
                 <div>
-                    <h4>{username}</h4>
+                    <Link to="/Favorites" className="text-white pr-5">Favorites</Link>
                     <Logout />
                 </div>
             ) : (
                 <div>
                     <Link to="/Login" className="text-white pr-5">Login</Link>
-                    <Link to="/Register" className="bg-orange-700 px-6 py-2 rounded cursor-pointer text-white">Sign Up</Link>
+                    <Link to="/Register" className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">Sign Up</Link>
                 </div>
             )}
         </div>
