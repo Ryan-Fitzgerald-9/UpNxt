@@ -8,24 +8,35 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 const MovieList = () => {
     const [movies, setMovies] = useState([])
     const [selectedMovie, setSelectedMovie] = useState(null)
-    const [favorite, setFavorite] = useState(false)
+
+    const [userFavorites, setUserFavorites] = useState([])
 
     useEffect(() => {
         const getMovies = async () => {
             const response = await axios.get(`${BASE_URL}/movies`)
+            // const userFavoritesMap = userFavorites.reduce((map, favorite) => {
+            //     map[favorite.movie] = true;
+            //     return map;
+            // }, {})
+
             const moviesWithPosters = await Promise.all(
                 response.data.map(async (movie) => {
                     const tmdbResponse = await axios.get(
                         `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}`
                     )
-                    const tmdbPosterPath = tmdbResponse.data.results[0]?.poster_path;
-                    return { ...movie, tmdbPosterPath }
+                    const tmdbPosterPath = tmdbResponse.data.results[0]?.poster_path
+                    // const isFavorite = userFavoritesMap[movie.id] || false
+
+                    // Chechk if movie is user favorite
+                    const isFavorite = userFavorites.some((favorite) => favorite.movie === movie.id)
+
+                    return { ...movie, tmdbPosterPath, isFavorite }
                 })
             )
             setMovies(moviesWithPosters);
         }
         getMovies()
-    }, [])
+    }, [userFavorites])
 
     const showMovieDetails = async (movie) => {
         // fetch TMDb poster path for the selected movie
@@ -40,6 +51,32 @@ const MovieList = () => {
 
     const closeMovieDetails = () => {
         setSelectedMovie(null)
+    }
+
+    const toggleFavorite = async (movieId) => {
+        try {
+            console.log(movieId)
+            // Check if the movie is already in the user's favorites
+            const isAlreadyFavorite = userFavorites.some((favorite) => favorite.movie === movieId);
+
+            if (isAlreadyFavorite) {
+                // Remove from favorites
+                console.log('in favorites')
+                await axios.post(`${BASE_URL}/user-favorites/toggle/${movieId}`);
+            } else {
+                console.log('not in favorites')
+                // Add to favorites
+                await axios.post(`${BASE_URL}/user-favorites/toggle/${movieId}`, { movie: movieId });
+            }
+
+            // Update userFavorites state
+            const updatedFavorites = isAlreadyFavorite
+                ? userFavorites.filter((favorite) => favorite.movie !== movieId)
+                : [...userFavorites, { movie: movieId }]
+            setUserFavorites(updatedFavorites)
+        } catch (error) {
+            console.error('Toggle favorite failed', error)
+        }
     }
 
     const slideLeft = () => {
@@ -68,13 +105,16 @@ const MovieList = () => {
                             {movies.map((movie, key) => (
                                 <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2" key={movie.id} >
                                     <img className="w-full h-auto block" src={`${POSTER_PATH}${movie.tmdbPosterPath}`} alt={movie.title}/>
-                                    <div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white">
+                                    <div 
+                                        className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white"
+                                        onClick={() => toggleFavorite(movie.id)}  
+                                    >
                                         <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">{movie.title}</p>
                                         {/* <p >
                                             IMDb Score: {movie.imdb_score}
                                         </p> */}
                                         <p>
-                                            {favorite ? <FaHeart className="absolute top-4 left-4 text-gray-300" /> : <FaRegHeart className="absolute top-4 left-4 text-gray-300" />}
+                                            {movie.isFavorite ? <FaHeart className="absolute top-4 left-4 text-red-600" /> : <FaRegHeart className="absolute top-4 left-4 text-gray-300" />}
                                         </p>
                                         {/* <button onClick={() => showMovieDetails(movie)}>
                                             Details

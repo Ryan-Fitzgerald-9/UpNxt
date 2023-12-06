@@ -4,7 +4,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BASE_URL, POSTER_PATH, TMDB_API_KEY } from '../globals';
 
 const Favorites = () => {
-    const [favorites, setFavorites] = useState([])
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         const getFavorites = async () => {
@@ -16,18 +16,18 @@ const Favorites = () => {
             }
         }
 
-        getFavorites();
+        getFavorites()
     }, [])
 
-    const toggleFavorite = async (movieId) => {
+    const toggleFavorite = async (reviewId) => {
         try {
             // Toggle favorite on the server
-            await axios.post(`${BASE_URL}/user-favorites/toggle/`, { movie: movieId })
+            await axios.post(`${BASE_URL}/user-favorites/toggle/`, { review: reviewId })
 
             // Update local state
             setFavorites((prevFavorites) =>
                 prevFavorites.map((favorite) =>
-                    favorite.movie === movieId ? { ...favorite, isFavorite: !favorite.isFavorite } : favorite
+                    favorite.review === reviewId ? { ...favorite, user_favorite: !favorite.user_favorite } : favorite
                 )
             )
         } catch (error) {
@@ -51,12 +51,12 @@ const Favorites = () => {
                             />
                             <div
                                 className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white"
-                                onClick={() => toggleFavorite(favorite.movie)}
+                                onClick={() => toggleFavorite(favorite.review)}
                             >
                                 <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
                                     {favorite.title}
                                 </p>
-                                {favorite.isFavorite ? (
+                                {favorite.user_favorite ? (
                                     <FaHeart className="absolute top-4 left-4 text-red-600" />
                                 ) : (
                                     <FaRegHeart className="absolute top-4 left-4 text-gray-300" />

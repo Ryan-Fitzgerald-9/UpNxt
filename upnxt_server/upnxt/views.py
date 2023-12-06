@@ -1,6 +1,11 @@
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from .serializers import MovieSerializer, ShowSerializer, CustomUserSerializer, ReviewSerializer
 from .models import Review, Movie, Show, CustomUser
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+
 
 class MovieList(generics.ListCreateAPIView):
     queryset = Movie.objects.all()
@@ -33,3 +38,22 @@ class ReviewList(generics.ListCreateAPIView):
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+# Added to toggle favorites
+class ToggleFavoriteView(APIView):
+    def post(self, request, movie_id, *args, **kwargs):
+        try:
+            # Assuming you have the user available through request.user
+            user = request.user
+
+            # Check if the movie has an associated Review for the current user
+            review, created = Review.objects.get_or_create(user=user, movie_id=movie_id)
+
+            # Toggle the user_favorite field
+            review.user_favorite = not review.user_favorite
+            review.save()
+
+            return Response({'status': 'success', 'user_favorite': review.user_favorite})
+        except Exception as e:
+            # Handle other potential exceptions
+            return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

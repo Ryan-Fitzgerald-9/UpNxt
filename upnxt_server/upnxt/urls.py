@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('users/<int:pk>', views.CustomUserDetail.as_view(), name='customuser_detail'),
     path('reviews/', views.ReviewList.as_view(), name='review_list'),
     path('reviews/<int:pk>', views.ReviewDetail.as_view(), name='review_detail'),
+    path('user-favorites/toggle/<int:movie_id>', login_required(views.ToggleFavoriteView.as_view(), login_url='http://localhost:5173/Login'), name='toggle_favorite'),
 ]

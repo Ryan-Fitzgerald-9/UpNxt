@@ -42,9 +42,9 @@ class Review(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviews')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews', null=True, blank=True)
     show = models.ForeignKey(Show, on_delete=models.CASCADE, related_name='reviews', null=True, blank=True)
-    title = models.CharField(max_length=100)
-    user_score = models.DecimalField(max_digits=3, decimal_places=1)
-    user_review = models.CharField(max_length=200)
+    # title = models.CharField(max_length=100)
+    # user_score = models.DecimalField(max_digits=3, decimal_places=1)
+    # user_review = models.CharField(max_length=200)
     user_favorite = models.BooleanField(default=False)
 
     class Meta:
