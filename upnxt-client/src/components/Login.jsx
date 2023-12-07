@@ -28,8 +28,8 @@ const Login = ({ handleLoginSuccess }) => {
     }
 
     return (
-        <div className='fixed w-full px-4 py24 z-50'>
-            <div className='max-w-[450px] h-[400px] mx-auto bg-gray-900 text-white rounded'>
+        <div className='fixed w-full px-4 py-4 z-50'>
+            <div className='max-w-[450px] h-[400px] mx-auto bg-gray-800 text-white rounded'>
                 <div className='max-w-[320px] mx-auto py-16'>
                     <h1 className='text-3xl font-bold text-center'>Login</h1>
                     <form 
@@ -37,7 +37,7 @@ const Login = ({ handleLoginSuccess }) => {
                         onSubmit={handleLogin}
                     >
                         <input 
-                            className='p-3 my-2 bg-gray-700 rounded' 
+                            className='p-3 my-2 bg-gray-600 rounded' 
                             id="upnxtUsername" 
                             placeholder="Enter username" 
                             type="text" 
@@ -45,7 +45,7 @@ const Login = ({ handleLoginSuccess }) => {
                             onChange={(e) => setUsername(e.target.value)} 
                         />
                         <input 
-                            className='p-3 my-2 bg-gray-700 rounded' 
+                            className='p-3 my-2 bg-gray-600 rounded' 
                             id="upnxtPassword" 
                             placeholder="Enter password" 
                             type="password" 

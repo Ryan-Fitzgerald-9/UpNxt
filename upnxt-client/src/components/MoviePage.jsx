@@ -7,10 +7,11 @@ export default function MoviePage({ movie, onClose }) {
     return (
         <div className="card-details-overlay">
             <div className="card-details-content">
-                <button className='close-button' onClick={onClose}>
-                    Close X
-                </button>
+                
                 <div className="details-container">
+                    <button className='close-button' onClick={onClose}>
+                        X
+                    </button>
                     <img src={`${POSTER_PATH}${movie.tmdbPosterPath}`} alt={movie.title} />
                     <h2>{movie.title}</h2>
                     <p className="text-yellow-600">{movie.genre} | {movie.length_in_mins} mins | {movie.release_date}</p>
