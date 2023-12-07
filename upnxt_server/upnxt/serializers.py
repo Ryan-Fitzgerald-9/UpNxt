@@ -36,7 +36,7 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('id', 'movie', 'movie_id', 'show', 'show_id', 'user', 'user_id', 'title', 'user_score', 'user_review')
+        fields = ('id', 'movie', 'movie_id', 'show', 'show_id', 'user', 'user_id', 'user_favorite')
 
 class MovieSerializer(serializers.HyperlinkedModelSerializer):
     reviews = ReviewSerializer(

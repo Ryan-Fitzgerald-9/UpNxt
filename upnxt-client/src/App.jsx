@@ -8,8 +8,9 @@ import Footer from './components/Footer'
 function App() {
   const [details, setDetails] = useState({})
   const [user, setUser] = useState(null)
-
+  console.log(user)
   const handleLoginSuccess = (userData) => {
+    localStorage.setItem('token', userData.key)
     setUser(userData)
   }
 

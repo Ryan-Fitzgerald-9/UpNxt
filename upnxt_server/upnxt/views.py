@@ -41,17 +41,26 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
 
 # Added to toggle favorites
 class ToggleFavoriteView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, movie_id, *args, **kwargs):
+        print('favorites')
         try:
-            # Assuming you have the user available through request.user
+            
             user = request.user
 
             # Check if the movie has an associated Review for the current user
             review, created = Review.objects.get_or_create(user=user, movie_id=movie_id)
 
-            # Toggle the user_favorite field
-            review.user_favorite = not review.user_favorite
-            review.save()
+            # Check if the review already exists
+            if not created:
+                # If the review already exists, delete it
+                review.delete()
+                status_message = 'removed from favorites'
+            else:
+                # If the review was created, toggle the user_favorite field
+                review.user_favorite = not review.user_favorite
+                review.save()
+                status_message = 'added to favorites'
 
             return Response({'status': 'success', 'user_favorite': review.user_favorite})
         except Exception as e:

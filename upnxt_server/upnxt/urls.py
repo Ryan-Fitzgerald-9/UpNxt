@@ -12,5 +12,5 @@ urlpatterns = [
     path('users/<int:pk>', views.CustomUserDetail.as_view(), name='customuser_detail'),
     path('reviews/', views.ReviewList.as_view(), name='review_list'),
     path('reviews/<int:pk>', views.ReviewDetail.as_view(), name='review_detail'),
-    path('user-favorites/toggle/<int:movie_id>', login_required(views.ToggleFavoriteView.as_view(), login_url='http://localhost:5173/Login'), name='toggle_favorite'),
+    path('user-favorites/toggle/<int:movie_id>', views.ToggleFavoriteView.as_view(), name='toggle_favorite'),
 ]
