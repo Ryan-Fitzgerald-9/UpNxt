@@ -1,6 +1,7 @@
 # UpNxt
 With seemingly endless options for streaming, finding the next movie to watch can take almost as long as a feature film. UpNxt provides movie availability across all your favorite streaming apps to save you time from swapping between each service over and over. Users can select and save favorites on this demo version.
 
+## Current State
 <img src=ReadMeAssets/homepage.png alt='ERD' width=100%>
 
 <img src=ReadMeAssets/movie-details.png alt='ERD' width=100%>

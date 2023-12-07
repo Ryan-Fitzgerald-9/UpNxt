@@ -16,14 +16,13 @@ const Favorites = () => {
         const getMovies = async () => {
             const response = await axios.get(`${BASE_URL}/movies`)
             
-            console.log(response)
             const moviesWithPosters = await Promise.all(
                 response.data.map(async (movie) => {
                     const tmdbResponse = await axios.get(
                         `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}`
                     )
                     const tmdbPosterPath = tmdbResponse.data.results[0]?.poster_path
-                    // const isFavorite = userFavoritesMap[movie.id] || false
+                    
 
                     // Check if movie is user favorite
                     const isFavorite = userFavorites.some((favorite) => favorite.movie === movie.id)
@@ -61,7 +60,7 @@ const Favorites = () => {
 
             if (isAlreadyFavorite) {
                 // Remove from favorites
-                console.log('in favorites', movieId)
+                
                 await axios.post(`${BASE_URL}/user-favorites/toggle/${movieId}`, { movie: movieId }, {
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -69,7 +68,7 @@ const Favorites = () => {
                     }
                 });
             } else {
-                console.log('not in favorites', movieId)
+                
                 // Add to favorites
                 await axios.post(`${BASE_URL}/user-favorites/toggle/${movieId}`, { movie: movieId }, {
                     headers: {

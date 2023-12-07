@@ -4,7 +4,7 @@ import Login from './Login'
 import Logout from './Logout'
 import Register from './Register'
 import Favorites from './Favorites'
-// import Footer from './Footer'
+
 
 export default function Main({ isAuthenticated, handleLoginSuccess}) {
     return (
@@ -15,12 +15,8 @@ export default function Main({ isAuthenticated, handleLoginSuccess}) {
           <Route path="/Logout" element={<Logout />} />
           <Route path="/Register" element={<Register handleLoginSuccess={handleLoginSuccess} />} />
           <Route path="/Favorites" element={<Favorites />} />
-          {/* <Route path="/Footer" element={<Footer />} /> */}
-          {/* <Route path='/SearchResults' element={< SearchResults />} /> */}
-          {/* <Route path="/MovieList" element={<MovieList />} /> */}
-
         </Routes>
       </div>
-    );
+    )
   }
   
