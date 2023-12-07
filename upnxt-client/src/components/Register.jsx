@@ -36,29 +36,50 @@ const Register = ({ handleLoginSuccess }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username:
-            <input type="text" name="username" value={formData.username} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input type="email" name="email" value={formData.email} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input type="password" name="password1" value={formData.password1} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Confirm Password:
-            <input type="password" name="password2" value={formData.password2} onChange={handleChange} />
-          </label>
-          <br />
-          <button type="submit">Register</button>
-        </form>
+      <div className='fixed w-full px-4 py-4 z-50'>
+            <div className='max-w-[450px] h-[500px] mx-auto bg-gray-800 text-white rounded'>
+                <div className='max-w-[320px] mx-auto py-16'>
+                    <h1 className='text-3xl font-bold text-center'>Sign Up</h1>
+                    <form 
+                      className='w-full flex flex-col py-4'
+                      onSubmit={handleSubmit}
+                    >
+                        <input 
+                        className='p-3 my-2 bg-gray-600 rounded'
+                        placeholder="Enter a username"
+                        type="text" 
+                        name="username" 
+                        value={formData.username} onChange={handleChange} 
+                        />
+                        <input 
+                        className='p-3 my-2 bg-gray-600 rounded'
+                        placeholder="Enter your email"
+                        type="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={handleChange} />
+                        <input 
+                        className='p-3 my-2 bg-gray-600 rounded'
+                        placeholder="Enter a password"
+                        type="password" 
+                        name="password1" 
+                        value={formData.password1} 
+                        onChange={handleChange} />
+                        <input 
+                        className='p-3 my-2 bg-gray-600 rounded'
+                        placeholder="Confirm password"
+                        type="password" 
+                        name="password2" 
+                        value={formData.password2} 
+                        onChange={handleChange} />
+                        <button 
+                        className='bg-red-600 py-3 my-6 rounded font-bold' 
+                        type="submit">Register
+                        </button>
+                    </form>
+                  </div>
+            </div>               
+        </div>
     )
 }
 

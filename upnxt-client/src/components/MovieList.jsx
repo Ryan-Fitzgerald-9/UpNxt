@@ -125,9 +125,9 @@ const MovieList = () => {
     return (
         
         <div>
-            <h2 className="text-white text-xl font-bold md:text-3xl p-4">Movies</h2>
+            <h2 className="text-white text-xl font-bold md:text-3xl p-4">Popular Movies</h2>
             <h5 className="text-red-600 font-bold md:text-xl pl-4">Please Select Your Subscriptions</h5>
-            <div className="text-yellow-600 pb-3 space-x-2">
+            <div className="text-yellow-500 pb-3 space-x-2">
                 <label className="p-4">
                     Netflix
                     <input className="ml-2" type="checkbox" checked={filters.netflix} onChange={() => handleFilterChange('netflix')} />
