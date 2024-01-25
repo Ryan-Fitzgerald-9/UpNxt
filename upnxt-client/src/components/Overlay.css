@@ -1,20 +1,22 @@
+/* Styling for the overlay that displays detailed movie information */
 .card-details-overlay {
-    position: fixed;
+    position: fixed; /* Fixed position to cover the entire viewport */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; 
+    z-index: 1000; /* Ensures the overlay appears above other elements */
 }
 
+/* Styling for the content within the overlay */
 .card-details-content {
-    max-width: 450px;
-    min-height: 630px;
-    position: relative; 
+    max-width: 450px; 
+    min-height: 630px; 
+    position: relative; /* Relative positioning for child elements */ 
     display: flex;
     align-items: center;
     text-align: center;
@@ -22,9 +24,10 @@
     background-color: #000000;
     padding: 20px;
     border: 1px solid red;
-    border-radius: 10px;
+    border-radius: 10px; /* Border radius for rounded corners */
 }
 
+/* Styling for the close button within the overlay */
 .close-button {
     position: absolute;
     top: 0px;
@@ -36,16 +39,16 @@
     color: #777;
 }
 
+/* Styling for the movie poster image within the overlay */
 .card-details-overlay img {
     width: 100%;
     height: 350px;
-    object-fit: cover;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
     border-radius: 10px;
     margin-top: 15px;
 }
 
-
+/* Styling for the heading within the details container */
 .details-container h2 {
   font-size: 24px;
 }
-

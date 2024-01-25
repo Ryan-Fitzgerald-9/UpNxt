@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../globals'
-// import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
+// Register Component handles user registration.
 const Register = ({ handleLoginSuccess }) => {
     const navigate = useNavigate()
+    // State to manage form data
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -13,24 +14,25 @@ const Register = ({ handleLoginSuccess }) => {
         password2: ''  // confirmation password field
     })
 
+    // Handle form input changes
     const handleChange = (e) => {
-        // console.log('handleChange called')
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
-
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault()
         
         try {
+            // Make registration request to the server
             const response = await axios.post(`${BASE_URL}/dj-rest-auth/registration/`, formData)
-            // handle successful registration
+            // Handle successful registration
             console.log(response.data)
             handleLoginSuccess(response.data)
 
-            // redirect to home
+            // Redirect to home page
             navigate('/')
         } catch (error) {
-            // handle registration error
+            // Handle registration error
             console.error('Registration failed', error)
         }
     }
@@ -44,6 +46,7 @@ const Register = ({ handleLoginSuccess }) => {
                       className='w-full flex flex-col py-4'
                       onSubmit={handleSubmit}
                     >
+                        {/* Input fields for username, email, and passwords */}
                         <input 
                         className='p-3 my-2 bg-gray-600 rounded'
                         placeholder="Enter a username"
@@ -72,6 +75,7 @@ const Register = ({ handleLoginSuccess }) => {
                         name="password2" 
                         value={formData.password2} 
                         onChange={handleChange} />
+                        {/* Registration button */}
                         <button 
                         className='bg-red-600 py-3 my-6 rounded font-bold' 
                         type="submit">Register

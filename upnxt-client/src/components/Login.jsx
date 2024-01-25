@@ -5,24 +5,27 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Login = ({ handleLoginSuccess }) => {
+    // Initialize necessary hooks and variables
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    // Handle the login form submission
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
+            // Make a POST request to the login endpoint
             const response = await axios.post(`${BASE_URL}/dj-rest-auth/login/`, {
                 username,
                 password
             })
-            // handle successful login
+            // Log successful login data and trigger login success handler
             console.log(response.data)
             handleLoginSuccess(response.data)
-            // redirect to home
+            // Redirect to home page
             navigate('/')
         } catch (error) {
-            // handle login error
+            // Handle login error
             console.error('Login failed', error)
         }
     }
@@ -36,6 +39,7 @@ const Login = ({ handleLoginSuccess }) => {
                         className='w-full flex flex-col py-4'
                         onSubmit={handleLogin}
                     >
+                        {/* Input fields for username and password */}
                         <input 
                             className='p-3 my-2 bg-gray-600 rounded' 
                             id="upnxtUsername" 
@@ -51,6 +55,7 @@ const Login = ({ handleLoginSuccess }) => {
                             type="password" 
                             value={password} 
                             onChange={(e) => setPassword(e.target.value)} />
+                        {/* Login button */}
                         <button className='bg-red-600 py-3 my-6 rounded font-bold'>
                             Login
                         </button>

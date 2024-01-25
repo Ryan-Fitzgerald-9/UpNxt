@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { BASE_URL, POSTER_PATH, TMDB_API_KEY } from '../globals';
+import React, { useState, useEffect } from "react"
+import axios from 'axios'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import MoviePage from './MoviePage'
 
+// Constants for API endpoints and keys
+import { BASE_URL, POSTER_PATH, TMDB_API_KEY } from '../globals'
+
+
 
 const Favorites = () => {
+    // State variables using React hooks
     const [movies, setMovies] = useState([])
     const [selectedMovie, setSelectedMovie] = useState(null)
     const [userFavorites, setUserFavorites] = useState([])
     
-
+    // Fetch movies and update state when userFavorites change
     useEffect(() => {
         const getMovies = async () => {
             const response = await axios.get(`${BASE_URL}/movies`)
@@ -35,6 +39,7 @@ const Favorites = () => {
         getMovies()
     }, [userFavorites])
 
+    // Show movie details when clicked
     const showMovieDetails = async (movie) => {
         // fetch TMDb poster path for the selected movie
         const tmdbResponse = await axios.get(
@@ -46,10 +51,12 @@ const Favorites = () => {
         setSelectedMovie({ ...movie, tmdbPosterPath })
     }
 
+    // Close movie details
     const closeMovieDetails = () => {
         setSelectedMovie(null)
     }
 
+    // Toggle favorite status for a movie
     const toggleFavorite = async (movieId) => {
         try {
             console.log(movieId)
@@ -60,7 +67,6 @@ const Favorites = () => {
 
             if (isAlreadyFavorite) {
                 // Remove from favorites
-                
                 await axios.post(`${BASE_URL}/user-favorites/toggle/${movieId}`, { movie: movieId }, {
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -68,7 +74,6 @@ const Favorites = () => {
                     }
                 });
             } else {
-                
                 // Add to favorites
                 await axios.post(`${BASE_URL}/user-favorites/toggle/${movieId}`, { movie: movieId }, {
                     headers: {
@@ -77,7 +82,6 @@ const Favorites = () => {
                     }
                 });
             }
-
             // Update userFavorites state
             const updatedFavorites = isAlreadyFavorite
                 ? userFavorites.filter((favorite) => favorite.movie !== movieId)
@@ -87,12 +91,12 @@ const Favorites = () => {
             console.error('Toggle favorite failed', error)
         }
     }
-
+    // Scroll the movie slider left
     const slideLeft = () => {
         let slider = document.getElementById('slider')
         slider.scrollLeft = slider.scrollLeft - 500
     }
-
+    // Scroll the movie slider right
     const slideRight = () => {
         let slider = document.getElementById('slider')
         slider.scrollLeft = slider.scrollLeft + 500
