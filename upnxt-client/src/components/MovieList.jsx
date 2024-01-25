@@ -28,7 +28,6 @@ const MovieList = () => {
                         `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}`
                     )
                     const tmdbPosterPath = tmdbResponse.data.results[0]?.poster_path
-                    // const isFavorite = userFavoritesMap[movie.id] || false
 
                     // Check if movie is user favorite
                     const isFavorite = userFavorites.some((favorite) => favorite.movie === movie.id)
