@@ -46,3 +46,5 @@ With seemingly endless options for streaming, finding the next movie to watch ca
 Email: rfitzgerald806@gmail.com  
 [LinkedIn](https://linkedin.com/in/ryan-fitzgerald-rf09) |
 [GitHub](https://github.com/Ryan-Fitzgerald-9)
+
+_Note: Please be aware that the Django authentication for users is still a work in progress._
