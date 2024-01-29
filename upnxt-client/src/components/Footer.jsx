@@ -3,7 +3,7 @@ import footerBg from '../assets/home3.png'
 
 export default function Footer () {
     return (
-        <div className="absolute bottom-0 w-full">
+        <div className="fixed bottom-0 w-full z-50">
             {/* Background image for the footer */}
             <img className="w-full h-[60px] bottom-0 object-cover" src={footerBg} alt="background" />
             {/* Gradient overlay for text visibility */}
