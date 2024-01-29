@@ -4,11 +4,12 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
+    # Hyperlinked fields to represent related resources
     movie = serializers.HyperlinkedRelatedField(
         view_name='movie_detail',
         read_only=True
     )
-
+    # PrimaryKeyRelated fields to accept related IDs
     movie_id = serializers.PrimaryKeyRelatedField(
         queryset=Movie.objects.all(),
         source='movie'
@@ -39,11 +40,12 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'movie', 'movie_id', 'show', 'show_id', 'user', 'user_id', 'user_favorite')
 
 class MovieSerializer(serializers.HyperlinkedModelSerializer):
+    # Nested ReviewSerializer to include favorites
     reviews = ReviewSerializer(
         many=True,
         read_only=True
     )
-
+    # Serializer URL field for hyperlinked related resource
     movie_url = serializers.ModelSerializer.serializer_url_field(
         view_name='movie_detail'
     )
@@ -51,13 +53,13 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Movie
         fields = ('id', 'movie_url', 'title', 'genre', 'release_date', 'length_in_mins', 'image_url', 'director', 'actors', 'available_on', 'imdb_score', 'overview', 'reviews')
-
+# Serializer for the Show model - may use for shows at a later date
 class ShowSerializer(serializers.HyperlinkedModelSerializer):
     reviews = ReviewSerializer(
         many=True,
         read_only=True
     )
-
+    # HyperlinkedIdentityField for show URL
     show_url = serializers.HyperlinkedIdentityField(
         view_name='show_detail',
     )
@@ -66,7 +68,9 @@ class ShowSerializer(serializers.HyperlinkedModelSerializer):
         model = Show
         fields = ('id', 'show_url', 'title', 'genre', 'release_date', 'seasons', 'image_url', 'director', 'actors', 'available_on', 'imdb_score', 'overview', 'reviews')
 
+# Serializer for the CustomUser model
 class CustomUserSerializer(serializers.ModelSerializer):
+    # Nested ReviewSerializer to include user's reviews
     reviews = ReviewSerializer(
         many=True,
         read_only=True
@@ -76,6 +80,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ('id', 'username', 'email', 'reviews')
 
+# Serializer for user registration
 class CustomRegisterSerializer(RegisterSerializer):
     user_id = serializers.SerializerMethodField()
 

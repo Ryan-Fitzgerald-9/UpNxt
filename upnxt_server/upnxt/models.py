@@ -1,13 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
+# CustomUser model extends Django's AbstractUser, adding an email field
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
     def __str__(self):
         return self.username
 
+# Movie model for storing information about movies
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
@@ -23,6 +24,7 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
+# Show model for storing information about TV shows - may use at a later date
 class Show(models.Model):
     title = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
@@ -38,6 +40,7 @@ class Show(models.Model):
     def __str__(self):
         return self.title
 
+# Review model to capture user reviews and favorites
 class Review(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviews')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews', null=True, blank=True)
