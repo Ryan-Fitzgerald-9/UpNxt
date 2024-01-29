@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
+# REST_FRAMEWORK settings configure the behavior of the Django Rest Framework.
+# It specifies the authentication classes to be used, and in this case, TokenAuthentication is enabled.
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -59,8 +61,10 @@ REST_FRAMEWORK = {
     )
 }
 
+# AUTH_USER_MODEL is set to 'upnxt.CustomUser', which indicates the custom user model for authentication.
 AUTH_USER_MODEL = 'upnxt.CustomUser'
 
+# MIDDLEWARE defines a list of middleware classes that process requests and responses.
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -165,12 +169,12 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend', #from youtube clip
+#     'django.contrib.auth.backends.ModelBackend', 
 #     'allauth.account.auth_backends.AuthenticationBackend',
 # ]
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'path.to.your.CustomRegisterSerializer',
+    'REGISTER_SERIALIZER': 'upnxt.serializers.CustomRegisterSerializer',
 }
 
 # # Configure AllAuth
